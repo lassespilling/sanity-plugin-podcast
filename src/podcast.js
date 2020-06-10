@@ -12,7 +12,7 @@ export default {
         {
             name: "title",
             type: "string",
-            required: true,
+            validation: (Rule) => Rule.required(),
             description:
                 "Remember that if your title is too long, it may be truncated in various podcatchers-",
         },
@@ -25,13 +25,19 @@ export default {
             name: "slug",
             title: "Podcast slug",
             type: "slug",
-            required: true,
+            validation: (Rule) => Rule.required(),
             description: "For when you need to refer to your podcast in a url.",
             options: {
                 source: "title",
                 slugify: (input) =>
                     input
                         .toLowerCase()
+                        .replace(/å/g, "a")
+                        .replace(/ø/g, "o")
+                        .replace(/æ/g, "ae")
+                        .replace(/ä/g, "a")
+                        .replace(/ö/g, "o")
+                        .replace(/[^\w\s]/gi, "")
                         .replace(/\s+/g, "-")
                         .slice(0, 200),
             },
@@ -39,7 +45,6 @@ export default {
         {
             name: "description",
             type: "text",
-            required: true,
             description:
                 "What is this podcast about and why should people subscribe to it?",
         },
@@ -47,7 +52,6 @@ export default {
             name: "coverArt",
             title: "Cover art",
             type: "image",
-            required: true,
             description:
                 "The image should be either jpg or png. Preferably 3000 x 3000, minimum 1400 x 1400 pixels.",
         },

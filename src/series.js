@@ -42,6 +42,12 @@ export default {
                 slugify: (input) =>
                     input
                         .toLowerCase()
+                        .replace(/å/g, "a")
+                        .replace(/ø/g, "o")
+                        .replace(/æ/g, "ae")
+                        .replace(/ä/g, "a")
+                        .replace(/ö/g, "o")
+                        .replace(/[^\w\s]/gi, "")
                         .replace(/\s+/g, "-")
                         .slice(0, 200),
             },

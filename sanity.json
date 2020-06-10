@@ -23,6 +23,10 @@
         },
         {
             "implements": "part:@sanity/base/schema-type",
+            "path": "venue.js"
+        },
+        {
+            "implements": "part:@sanity/base/schema-type",
             "path": "host.js"
         },
         {

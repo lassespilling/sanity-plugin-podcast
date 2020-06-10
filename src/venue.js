@@ -1,10 +1,10 @@
-import { GiPublicSpeaker } from "react-icons/gi";
+import { FaChurch } from "react-icons/fa";
 
 export default {
-    name: "host",
-    title: "Host",
+    name: "venue",
+    title: "Venue",
     type: "document",
-    icon: GiPublicSpeaker,
+    icon: FaChurch,
     fields: [
         {
             name: "name",
@@ -12,12 +12,14 @@ export default {
             type: "string",
         },
         {
-            name: "email",
-            type: "email",
-        },
-        {
+            title: "Image",
             name: "image",
             type: "image",
+        },
+        {
+            name: "adress",
+            title: "Adress",
+            type: "string",
         },
     ],
 };
