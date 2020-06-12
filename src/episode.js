@@ -51,9 +51,20 @@ export default {
             of: [{ type: "reference", weak: true, to: [{ type: "podcast" }] }],
         },
         {
-            name: "schedule",
-            type: "schedule",
-            title: "Publish schedule",
+            name: "date",
+            type: "datetime",
+            title: "Date",
+            options: {
+                inputUtc: false,
+                dateFormat: "DD.MM.YYYY",
+                timeFormat: "HH:mm",
+                inputDate: true,
+                inputTime: true,
+                timeStep: 15,
+                calendarTodayLabel: "Today",
+                placeholderDate: "21.10.2021",
+                placeholderTime: "11:00",
+            },
         },
         // {
         //     name: "duration",
@@ -161,12 +172,12 @@ export default {
         {
             title: "Publish Date, New",
             name: "publishDateDesc",
-            by: [{ field: "schedule.publish", direction: "desc" }],
+            by: [{ field: "date", direction: "desc" }],
         },
         {
             title: "Publish Date, Old",
             name: "publishDateAsc",
-            by: [{ field: "schedule.publish", direction: "asc" }],
+            by: [{ field: "date", direction: "asc" }],
         },
     ],
     preview: {
@@ -175,16 +186,12 @@ export default {
             subtitle: "podcast.0.title",
             description: "summary",
             media: "coverArt",
-            schedule: "schedule",
+            date: "date",
         },
-        prepare({ title, subtitle, description, media, schedule }) {
+        prepare({ title, subtitle, description, media, date }) {
             return {
-                title: `${title} - ${new Date(
-                    schedule.publish
-                ).toLocaleDateString()}`,
-                esubtitle: `${new Date(
-                    schedule.publish
-                ).toDateString()} – ${subtitle}`,
+                title: `${title} - ${new Date(date).toLocaleDateString()}`,
+                subtitle: `${new Date(date).toDateString()} – ${subtitle}`,
                 description,
                 media,
             };
