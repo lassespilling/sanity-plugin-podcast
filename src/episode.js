@@ -199,14 +199,16 @@ export default {
     },
     initialValue: () => ({
         slug: title
-            .toLowerCase()
-            .replace(/å/g, "a")
-            .replace(/ø/g, "o")
-            .replace(/æ/g, "ae")
-            .replace(/ä/g, "a")
-            .replace(/ö/g, "o")
-            .replace(/[^\w\s]/gi, "")
-            .replace(/\s+/g, "-")
-            .slice(0, 200),
+            ? title
+                  .toLowerCase()
+                  .replace(/å/g, "a")
+                  .replace(/ø/g, "o")
+                  .replace(/æ/g, "ae")
+                  .replace(/ä/g, "a")
+                  .replace(/ö/g, "o")
+                  .replace(/[^\w\s]/gi, "")
+                  .replace(/\s+/g, "-")
+                  .slice(0, 200)
+            : "",
     }),
 };
